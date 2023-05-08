@@ -1,0 +1,18 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "bc-fix-9a74f424-f430-42a1-9130-afbbc2189a7e" ]
+  pull_request:
+    branches: [ "bc-fix-9a74f424-f430-42a1-9130-afbbc2189a7e" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
